@@ -1,0 +1,11 @@
+{
+  "name": "mindful-shield",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Browser extension that interrupts adult-content searches with self-development reflections.",
+  "scripts": {
+    "test": "node --test tests/",
+    "package": "powershell -NoProfile -Command \"Compress-Archive -Path extension/* -DestinationPath dist/mindful-shield.zip -Force\""
+  }
+}

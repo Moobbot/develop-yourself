@@ -1,0 +1,30 @@
+{
+  "manifest_version": 3,
+  "name": "Mindful Shield – Dừng lại & Phát triển bản thân",
+  "short_name": "Mindful Shield",
+  "version": "1.0.0",
+  "description": "Phát hiện khi bạn tìm kiếm nội dung 18+, sex, hentai… và nhắc bạn dừng lại suy ngẫm bằng câu nói, hình ảnh, video phát triển bản thân.",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "permissions": ["storage", "unlimitedStorage", "webNavigation", "tabs", "alarms"],
+  "host_permissions": ["<all_urls>"],
+  "background": {
+    "service_worker": "src/background.js",
+    "type": "module"
+  },
+  "action": {
+    "default_title": "Mindful Shield",
+    "default_popup": "pages/popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png"
+    }
+  },
+  "options_page": "pages/options.html",
+  "incognito": "spanning"
+}

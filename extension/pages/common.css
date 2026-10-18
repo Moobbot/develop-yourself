@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;1,500&display=swap');
+
+:root {
+  --bg-0: #070914;
+  --bg-1: #0d1124;
+  --bg-2: #141a33;
+  --glass: rgba(20, 26, 51, 0.62);
+  --glass-strong: rgba(16, 21, 42, 0.85);
+  --border: rgba(148, 163, 255, 0.16);
+  --border-strong: rgba(148, 163, 255, 0.32);
+  --text: #eef0ff;
+  --text-dim: #a5abd0;
+  --text-mute: #6f76a3;
+  --violet: #8b5cf6;
+  --violet-2: #a78bfa;
+  --teal: #2dd4bf;
+  --teal-2: #5eead4;
+  --amber: #fbbf24;
+  --rose: #fb7185;
+  --green: #34d399;
+  --grad: linear-gradient(135deg, #8b5cf6 0%, #6366f1 45%, #2dd4bf 100%);
+  --grad-warm: linear-gradient(135deg, #f59e0b 0%, #f97316 50%, #fb7185 100%);
+  --radius: 18px;
+  --radius-sm: 12px;
+  --shadow: 0 20px 60px -20px rgba(0, 0, 0, 0.7);
+  --font: 'Be Vietnam Pro', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --serif: 'Playfair Display', Georgia, serif;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: var(--font);
+  color: var(--text);
+  background: var(--bg-0);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.55;
+}
+
+a { color: var(--teal-2); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+::selection { background: rgba(139, 92, 246, 0.45); }
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb { background: rgba(148, 163, 255, 0.2); border-radius: 10px; border: 2px solid transparent; background-clip: padding-box; }
+::-webkit-scrollbar-track { background: transparent; }
+
+/* ---------- glass card ---------- */
+.glass {
+  background: var(--glass);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  box-shadow: var(--shadow);
+}
+
+/* ---------- buttons ---------- */
+.btn {
+  --b: var(--border-strong);
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 11px 18px;
+  border-radius: 12px;
+  border: 1px solid var(--b);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text);
+  font: 600 14px/1 var(--font);
+  cursor: pointer;
+  transition: transform .18s ease, background .18s ease, border-color .18s ease, box-shadow .18s ease, opacity .18s;
+  user-select: none;
+  white-space: nowrap;
+}
+.btn:hover:not(:disabled) { transform: translateY(-1px); background: rgba(255, 255, 255, 0.08); border-color: var(--violet-2); }
+.btn:active:not(:disabled) { transform: translateY(0) scale(.98); }
+.btn:disabled { opacity: .45; cursor: not-allowed; }
+.btn-primary {
+  border: none;
+  background: var(--grad);
+  box-shadow: 0 10px 30px -10px rgba(99, 102, 241, .8);
+}
+.btn-primary:hover:not(:disabled) { background: var(--grad); box-shadow: 0 14px 36px -10px rgba(45, 212, 191, .7); filter: brightness(1.08); }
+.btn-ghost { background: transparent; border-color: transparent; color: var(--text-dim); }
+.btn-ghost:hover:not(:disabled) { color: var(--text); background: rgba(255,255,255,.05); border-color: var(--border); }
+.btn-danger { border-color: rgba(251, 113, 133, .4); color: #fecdd3; }
+.btn-danger:hover:not(:disabled) { border-color: var(--rose); background: rgba(251, 113, 133, .12); }
+.btn-sm { padding: 7px 12px; font-size: 13px; border-radius: 10px; }
+.btn-lg { padding: 15px 26px; font-size: 16px; border-radius: 14px; }
+
+/* ---------- inputs ---------- */
+.input, textarea.input, select.input {
+  width: 100%;
+  padding: 11px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: rgba(7, 9, 20, 0.55);
+  color: var(--text);
+  font: 400 14px/1.5 var(--font);
+  outline: none;
+  transition: border-color .2s, box-shadow .2s;
+}
+.input:focus { border-color: var(--violet-2); box-shadow: 0 0 0 4px rgba(139, 92, 246, .18); }
+textarea.input { resize: vertical; min-height: 90px; }
+.input::placeholder { color: var(--text-mute); }
+
+/* ---------- toggle switch ---------- */
+.switch { position: relative; display: inline-block; width: 46px; height: 26px; flex-shrink: 0; }
+.switch input { opacity: 0; width: 0; height: 0; }
+.switch .slider {
+  position: absolute; inset: 0; cursor: pointer;
+  background: rgba(255,255,255,.12); border-radius: 26px; transition: .25s;
+  border: 1px solid var(--border);
+}
+.switch .slider::before {
+  content: ''; position: absolute; width: 20px; height: 20px; left: 2px; top: 2px;
+  background: #fff; border-radius: 50%; transition: .25s cubic-bezier(.4,1.6,.6,1);
+  box-shadow: 0 2px 6px rgba(0,0,0,.4);
+}
+.switch input:checked + .slider { background: var(--grad); border-color: transparent; }
+.switch input:checked + .slider::before { transform: translateX(20px); }
+
+/* ---------- misc ---------- */
+.chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 6px 12px; border-radius: 999px;
+  background: rgba(255,255,255,.06); border: 1px solid var(--border);
+  font-size: 13px; color: var(--text-dim);
+}
+.grad-text { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.muted { color: var(--text-dim); }
+.mute { color: var(--text-mute); }
+.hidden { display: none !important; }
+
+.toast {
+  position: fixed; left: 50%; bottom: 28px; transform: translate(-50%, 30px);
+  background: var(--glass-strong); border: 1px solid var(--border-strong);
+  padding: 12px 20px; border-radius: 12px; font-size: 14px; z-index: 9999;
+  opacity: 0; transition: .3s ease; pointer-events: none; backdrop-filter: blur(12px);
+}
+.toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+@keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+@keyframes pulseGlow { 0%, 100% { box-shadow: 0 0 0 0 rgba(139,92,246,.45); } 50% { box-shadow: 0 0 0 14px rgba(139,92,246,0); } }
+.fade-up { animation: fadeUp .6s cubic-bezier(.2,.8,.2,1) both; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}

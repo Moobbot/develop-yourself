@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cài đặt – Mindful Shield</title>
+  <meta name="description" content="Quản lý từ khóa, câu nói, hình ảnh, video và theo dõi tiến trình phát triển bản thân." />
+  <link rel="icon" href="/icons/icon32.png" />
+  <link rel="stylesheet" href="common.css" />
+  <link rel="stylesheet" href="options.css" />
+</head>
+<body>
+  <div class="glow g1"></div><div class="glow g2"></div>
+
+  <aside class="sidebar">
+    <div class="brand">
+      <img src="/icons/icon48.png" alt="" />
+      <div><b>Mindful Shield</b><span>Dừng lại & phát triển</span></div>
+    </div>
+    <nav id="nav">
+      <p class="nav-label">Tiến trình</p>
+      <a href="#dashboard" data-sec="dashboard">📊 Tổng quan</a>
+      <a href="#journal" data-sec="journal">📔 Nhật ký</a>
+      <p class="nav-label">Nội dung truyền cảm hứng</p>
+      <a href="#goals" data-sec="goals">🎯 Lý do của tôi</a>
+      <a href="#quotes" data-sec="quotes">💬 Câu nói</a>
+      <a href="#images" data-sec="images">🖼️ Hình ảnh</a>
+      <a href="#videos" data-sec="videos">🎬 Video</a>
+      <a href="#questions" data-sec="questions">💭 Câu hỏi suy ngẫm</a>
+      <a href="#actions" data-sec="actions">⚡ Hành động thay thế</a>
+      <p class="nav-label">Phát hiện</p>
+      <a href="#keywords" data-sec="keywords">🔎 Từ khóa</a>
+      <a href="#domains" data-sec="domains">🚫 Trang web</a>
+      <p class="nav-label">Hệ thống</p>
+      <a href="#settings" data-sec="settings">⚙️ Cài đặt</a>
+      <a href="#backup" data-sec="backup">💾 Sao lưu</a>
+    </nav>
+    <a class="btn btn-sm preview-btn" href="intervention.html" target="_blank" id="preview">👁 Xem trước màn hình nhắc</a>
+  </aside>
+
+  <main class="content">
+    <!-- DASHBOARD -->
+    <section class="sec" id="sec-dashboard">
+      <div class="welcome glass hidden" id="welcome">
+        <h2>👋 Chào mừng bạn đến với Mindful Shield</h2>
+        <p>Tiện ích sẽ tự động phát hiện khi bạn tìm kiếm nội dung 18+ trên Google, Bing, Cốc Cốc, YouTube… và hiển thị một khoảnh khắc để bạn suy ngẫm.</p>
+        <ol>
+          <li>Viết ra <a href="#goals">lý do của bạn</a> – đây là điều mạnh mẽ nhất.</li>
+          <li>Thêm <a href="#quotes">câu nói</a>, <a href="#images">hình ảnh</a>, <a href="#videos">video</a> có ý nghĩa với bạn.</li>
+          <li>Bật tiện ích trong <b>chế độ ẩn danh</b>: vào <code>chrome://extensions</code> (hoặc <code>edge://extensions</code>) → Chi tiết → <b>Cho phép ở chế độ ẩn danh</b>.</li>
+        </ol>
+      </div>
+
+      <h1 class="title">Tiến trình của bạn</h1>
+      <div class="stats">
+        <div class="stat glass big"><span class="lbl">🔥 Chuỗi hiện tại</span><b id="s-streak">–</b><small id="s-streak-sub" class="mute"></small></div>
+        <div class="stat glass"><span class="lbl">🏆 Chiến thắng</span><b id="s-wins">0</b><small class="mute">lần chọn quay lại</small></div>
+        <div class="stat glass"><span class="lbl">📈 Tỉ lệ thắng</span><b id="s-rate">100%</b><small class="mute">trên tổng số lần</small></div>
+        <div class="stat glass"><span class="lbl">⭐ Chuỗi dài nhất</span><b id="s-best">0</b><small class="mute">ngày</small></div>
+      </div>
+      <div class="glass panel">
+        <div class="panel-head"><h2>14 ngày gần nhất</h2><div class="legend"><i class="lg-win"></i>Chiến thắng <i class="lg-rel"></i>Tiếp tục <i class="lg-pen"></i>Khác</div></div>
+        <div class="chart" id="chart"></div>
+      </div>
+      <div class="glass panel">
+        <div class="panel-head"><h2>Gần đây</h2><a href="#journal">Xem tất cả →</a></div>
+        <div id="recent" class="events"></div>
+      </div>
+    </section>
+
+    <!-- JOURNAL -->
+    <section class="sec" id="sec-journal">
+      <h1 class="title">Nhật ký</h1>
+      <p class="muted">Mỗi lần màn hình nhắc nhở xuất hiện, những gì bạn viết sẽ được lưu ở đây (chỉ trên máy của bạn). Đọc lại để hiểu những "điểm kích hoạt" của mình.</p>
+      <div class="toolbar">
+        <select class="input sm" id="j-filter">
+          <option value="all">Tất cả</option>
+          <option value="back">🏆 Chiến thắng</option>
+          <option value="continue">⚠️ Đã tiếp tục</option>
+          <option value="pending">⏳ Đóng tab / chưa chọn</option>
+        </select>
+        <button class="btn btn-sm btn-danger" id="j-clear">Xóa toàn bộ nhật ký</button>
+      </div>
+      <div id="journal-list" class="events"></div>
+    </section>
+
+    <!-- GOALS -->
+    <section class="sec" id="sec-goals">
+      <h1 class="title">Lý do của tôi</h1>
+      <p class="muted">Những lý do sâu sắc khiến bạn muốn thay đổi. Chúng sẽ hiển thị nổi bật mỗi khi bạn bị cám dỗ. Hãy viết bằng chính lời của bạn.</p>
+      <div data-list="goals" data-placeholder="Ví dụ: Tôi muốn là người chồng/người cha mà gia đình tự hào."></div>
+    </section>
+
+    <!-- QUOTES -->
+    <section class="sec" id="sec-quotes">
+      <h1 class="title">Câu nói ý nghĩa</h1>
+      <div class="glass panel">
+        <div class="row">
+          <textarea class="input" id="quote-text" placeholder="Nội dung câu nói…" rows="2"></textarea>
+        </div>
+        <div class="row">
+          <input class="input" id="quote-author" placeholder="Tác giả (không bắt buộc)" />
+          <button class="btn btn-primary" id="quote-add">+ Thêm câu nói</button>
+        </div>
+        <details>
+          <summary>Nhập nhiều câu cùng lúc</summary>
+          <p class="small mute">Mỗi dòng một câu. Tác giả đặt sau dấu " — " hoặc " - ". Ví dụ: <code>Kỷ luật là tự do — Jocko Willink</code></p>
+          <textarea class="input" id="quote-bulk" rows="5"></textarea>
+          <button class="btn btn-sm" id="quote-bulk-add">Nhập</button>
+        </details>
+      </div>
+      <div class="toolbar"><span class="mute" id="quote-count"></span><button class="btn btn-sm btn-ghost" data-reset="quotes">↺ Khôi phục mặc định</button></div>
+      <div id="quote-list" class="list"></div>
+    </section>
+
+    <!-- IMAGES -->
+    <section class="sec" id="sec-images">
+      <h1 class="title">Hình ảnh truyền cảm hứng</h1>
+      <div class="glass panel">
+        <div class="row">
+          <input class="input" id="img-url" placeholder="Dán đường dẫn ảnh (https://…)" />
+          <input class="input" id="img-caption" placeholder="Chú thích (không bắt buộc)" />
+          <button class="btn btn-primary" id="img-add">+ Thêm</button>
+        </div>
+        <label class="drop" id="img-drop">
+          <input type="file" id="img-file" accept="image/*" multiple hidden />
+          <span>📁 Kéo thả hoặc <b>chọn ảnh từ máy</b> (lưu cục bộ, không giới hạn)</span>
+        </label>
+      </div>
+      <div class="toolbar"><span class="mute" id="img-count"></span><button class="btn btn-sm btn-ghost" data-reset="images">↺ Khôi phục mặc định</button></div>
+      <div id="img-grid" class="img-grid"></div>
+    </section>
+
+    <!-- VIDEOS -->
+    <section class="sec" id="sec-videos">
+      <h1 class="title">Video phát triển bản thân</h1>
+      <div class="glass panel">
+        <div class="row">
+          <input class="input" id="vid-url" placeholder="Link YouTube hoặc link video .mp4/.webm" />
+          <input class="input" id="vid-title" placeholder="Tiêu đề (không bắt buộc)" />
+          <button class="btn btn-primary" id="vid-add">+ Thêm</button>
+        </div>
+        <label class="drop" id="vid-drop">
+          <input type="file" id="vid-file" accept="video/*" multiple hidden />
+          <span>📁 Kéo thả hoặc <b>chọn video từ máy</b> (mp4, webm…)</span>
+        </label>
+      </div>
+      <div class="toolbar"><span class="mute" id="vid-count"></span><button class="btn btn-sm btn-ghost" data-reset="videos">↺ Khôi phục mặc định</button></div>
+      <div id="vid-grid" class="img-grid"></div>
+    </section>
+
+    <!-- QUESTIONS -->
+    <section class="sec" id="sec-questions">
+      <h1 class="title">Câu hỏi suy ngẫm</h1>
+      <p class="muted">Mỗi lần nhắc nhở, 4 câu hỏi ngẫu nhiên sẽ được hiển thị.</p>
+      <div data-list="questions" data-placeholder="Ví dụ: Bạn có đang trốn tránh một việc quan trọng không?"></div>
+    </section>
+
+    <!-- ACTIONS -->
+    <section class="sec" id="sec-actions">
+      <h1 class="title">Hành động thay thế</h1>
+      <p class="muted">Gợi ý những việc lành mạnh bạn có thể làm ngay thay vì xem nội dung 18+.</p>
+      <div data-list="actions" data-placeholder="Ví dụ: 🎸 Tập guitar 10 phút"></div>
+    </section>
+
+    <!-- KEYWORDS -->
+    <section class="sec" id="sec-keywords">
+      <h1 class="title">Từ khóa phát hiện</h1>
+      <div class="glass panel help">
+        <b>Cú pháp</b> (mỗi dòng một từ khóa, không phân biệt hoa thường, tự bỏ dấu tiếng Việt):
+        <ul>
+          <li><code>phim sex</code> – khớp nguyên từ / cụm từ (cũng khớp "phimsex", "phim-sex")</li>
+          <li><code>*porn</code> – khớp ở bất kỳ vị trí nào (pornhub, p o r n…)</li>
+          <li><code>=lồn</code> – khớp chính xác <i>có dấu</i> (tránh nhầm với "lon bia")</li>
+          <li><code># ghi chú</code> – dòng bị bỏ qua</li>
+        </ul>
+      </div>
+      <div class="two">
+        <div>
+          <div class="toolbar"><h3>Từ khóa cần phát hiện <span class="mute" id="kw-count"></span></h3><button class="btn btn-sm btn-ghost" data-reset="keywords">↺ Mặc định</button></div>
+          <textarea class="input mono" id="kw-text" rows="18" spellcheck="false"></textarea>
+        </div>
+        <div>
+          <div class="toolbar"><h3>Ngoại lệ (cho phép) <span class="mute" id="al-count"></span></h3><button class="btn btn-sm btn-ghost" data-reset="allowlist">↺ Mặc định</button></div>
+          <textarea class="input mono" id="al-text" rows="18" spellcheck="false"></textarea>
+        </div>
+      </div>
+      <div class="toolbar"><span></span><button class="btn btn-primary" id="kw-save">💾 Lưu từ khóa</button></div>
+      <div class="glass panel">
+        <h3>🧪 Thử nghiệm</h3>
+        <div class="row">
+          <input class="input" id="test-input" placeholder="Nhập một cụm từ tìm kiếm hoặc một URL để kiểm tra…" />
+          <button class="btn" id="test-btn">Kiểm tra</button>
+        </div>
+        <p id="test-result" class="test-result"></p>
+      </div>
+    </section>
+
+    <!-- DOMAINS -->
+    <section class="sec" id="sec-domains">
+      <h1 class="title">Trang web cần tránh</h1>
+      <div class="glass panel help">
+        Khi mở trực tiếp các trang này, màn hình nhắc nhở cũng sẽ xuất hiện.
+        <ul>
+          <li><code>example.com</code> – trang đó và mọi tên miền con</li>
+          <li><code>.xxx</code> – toàn bộ đuôi tên miền</li>
+          <li><code>*hentai</code> – mọi tên miền có chứa chữ này</li>
+        </ul>
+      </div>
+      <div class="toolbar"><h3>Danh sách <span class="mute" id="dm-count"></span></h3><button class="btn btn-sm btn-ghost" data-reset="domains">↺ Mặc định</button></div>
+      <textarea class="input mono" id="dm-text" rows="20" spellcheck="false"></textarea>
+      <div class="toolbar"><span></span><button class="btn btn-primary" id="dm-save">💾 Lưu danh sách</button></div>
+    </section>
+
+    <!-- SETTINGS -->
+    <section class="sec" id="sec-settings">
+      <h1 class="title">Cài đặt</h1>
+      <div class="glass panel settings" id="settings-form">
+        <label class="set"><div><b>Bật bảo vệ</b><small>Theo dõi tìm kiếm và trang web.</small></div><span class="switch"><input type="checkbox" data-set="enabled" /><span class="slider"></span></span></label>
+        <label class="set"><div><b>Chế độ nghiêm khắc</b><small>Ẩn hoàn toàn nút "Vẫn tiếp tục".</small></div><span class="switch"><input type="checkbox" data-set="strictMode" /><span class="slider"></span></span></label>
+        <label class="set"><div><b>Thời gian chờ trước khi được tiếp tục</b><small>Số giây đếm ngược.</small></div><input class="input sm num" type="number" min="0" max="600" data-set="continueDelaySec" /></label>
+        <label class="set"><div><b>Bắt buộc viết lý do khi tiếp tục</b><small>Giúp bạn ý thức hơn về lựa chọn.</small></div><span class="switch"><input type="checkbox" data-set="requireReason" /><span class="slider"></span></span></label>
+        <label class="set"><div><b>Số ký tự tối thiểu của lý do</b></div><input class="input sm num" type="number" min="0" max="500" data-set="minReasonLength" /></label>
+        <label class="set"><div><b>Cho phép lại trong (phút)</b><small>Sau khi chọn tiếp tục, cùng tìm kiếm/trang đó sẽ không bị chặn lại trong khoảng này.</small></div><input class="input sm num" type="number" min="1" max="240" data-set="allowMinutes" /></label>
+        <label class="set"><div><b>Chặn trang web trong danh sách</b></div><span class="switch"><input type="checkbox" data-set="monitorDomains" /><span class="slider"></span></span></label>
+        <label class="set"><div><b>Kiểm tra tìm kiếm trên mọi trang web</b><small>Đọc tham số ?q=, ?search=… trên các trang khác (TikTok, Reddit, diễn đàn…).</small></div><span class="switch"><input type="checkbox" data-set="genericSearch" /><span class="slider"></span></span></label>
+        <label class="set"><div><b>Ẩn nội dung tìm kiếm trên màn hình nhắc</b></div><span class="switch"><input type="checkbox" data-set="hideQuery" /><span class="slider"></span></span></label>
+        <label class="set"><div><b>Tự động phát video</b></div><span class="switch"><input type="checkbox" data-set="autoPlayVideo" /><span class="slider"></span></span></label>
+        <label class="set"><div><b>Khóa cam kết</b><small>Phải gõ câu cam kết khi muốn tắt / tạm dừng bảo vệ.</small></div><span class="switch"><input type="checkbox" data-set="lockDisable" /><span class="slider"></span></span></label>
+        <label class="set"><div><b>Trang an toàn</b><small>Mở khi bạn chọn quay lại.</small></div><input class="input sm url" type="url" data-set="safeUrl" /></label>
+      </div>
+    </section>
+
+    <!-- BACKUP -->
+    <section class="sec" id="sec-backup">
+      <h1 class="title">Sao lưu & khôi phục</h1>
+      <div class="glass panel">
+        <p class="muted">Xuất toàn bộ cài đặt, từ khóa, câu nói, liên kết ảnh/video và nhật ký ra tệp JSON. <i>Ảnh/video tải lên từ máy không được đưa vào tệp sao lưu.</i></p>
+        <div class="row">
+          <button class="btn btn-primary" id="export">⬇ Xuất dữ liệu</button>
+          <label class="btn"><input type="file" id="import" accept="application/json" hidden />⬆ Nhập dữ liệu</label>
+        </div>
+      </div>
+      <div class="glass panel danger-zone">
+        <h3>Vùng nguy hiểm</h3>
+        <p class="muted">Khôi phục toàn bộ nội dung mặc định (giữ lại nhật ký).</p>
+        <button class="btn btn-danger" id="reset-all">Khôi phục mặc định</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Lock modal -->
+  <div class="modal hidden" id="lock-modal">
+    <div class="modal-box glass">
+      <h2>🔒 Xác nhận cam kết</h2>
+      <p class="muted">Để tiếp tục, hãy gõ chính xác câu sau:</p>
+      <p class="phrase" id="lock-phrase"></p>
+      <input class="input" id="lock-input" autocomplete="off" />
+      <div class="modal-actions">
+        <button class="btn" id="lock-cancel">Hủy</button>
+        <button class="btn btn-danger" id="lock-ok" disabled>Xác nhận</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+  <script type="module" src="options.js"></script>
+</body>
+</html>

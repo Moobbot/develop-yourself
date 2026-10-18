@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <title>Mindful Shield</title>
+  <link rel="stylesheet" href="common.css" />
+  <style>
+    body { width: 340px; padding: 16px; background: radial-gradient(400px 260px at 0% 0%, rgba(139,92,246,.35), transparent 70%), radial-gradient(300px 200px at 100% 100%, rgba(45,212,191,.22), transparent 70%), var(--bg-0); }
+    header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; }
+    .brand img { width: 30px; height: 30px; border-radius: 9px; }
+    .status { font-size: 12px; padding: 4px 10px; border-radius: 999px; font-weight: 600; }
+    .status.on { background: rgba(52,211,153,.16); color: #6ee7b7; border: 1px solid rgba(52,211,153,.35); }
+    .status.off { background: rgba(251,113,133,.14); color: #fda4af; border: 1px solid rgba(251,113,133,.35); }
+    .status.paused { background: rgba(251,191,36,.14); color: #fcd34d; border: 1px solid rgba(251,191,36,.35); }
+    .streak { text-align: center; padding: 20px 14px; margin-bottom: 12px; }
+    .streak .lbl { font-size: 12px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1.4px; }
+    .streak b { display: block; font-size: 30px; font-weight: 800; margin: 4px 0; }
+    .mini { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 12px; }
+    .mini div { padding: 10px; text-align: center; border-radius: 12px; background: rgba(255,255,255,.04); border: 1px solid var(--border); }
+    .mini b { display: block; font-size: 18px; }
+    .mini span { font-size: 11px; color: var(--text-mute); }
+    .quote { font: italic 500 15px/1.5 var(--serif); color: var(--text-dim); padding: 12px 14px; margin-bottom: 12px; border-left: 3px solid var(--violet); background: rgba(139,92,246,.08); border-radius: 0 12px 12px 0; }
+    .row { display: flex; gap: 8px; margin-bottom: 8px; }
+    .row .btn { flex: 1; }
+    .toggle-row { display: flex; align-items: center; justify-content: space-between; padding: 12px 14px; margin-bottom: 10px; }
+    .lock { margin-top: 10px; }
+    .lock p { font-size: 12px; margin: 0 0 6px; }
+    .lock .phrase { font-weight: 700; font-size: 12.5px; padding: 8px; border-radius: 8px; border: 1px dashed var(--violet-2); background: rgba(139,92,246,.12); margin-bottom: 6px; user-select: none; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand"><img src="/icons/icon48.png" alt="" />Mindful Shield</div>
+    <span class="status on" id="status">Đang bảo vệ</span>
+  </header>
+
+  <div class="glass streak">
+    <span class="lbl">🔥 Chuỗi hiện tại</span>
+    <b class="grad-text" id="streak">–</b>
+    <span class="mute" style="font-size:12px" id="streak-sub"></span>
+  </div>
+
+  <div class="mini">
+    <div><b id="wins">0</b><span>chiến thắng</span></div>
+    <div><b id="today">0</b><span>hôm nay</span></div>
+    <div><b id="rate">100%</b><span>tỉ lệ thắng</span></div>
+  </div>
+
+  <div class="quote" id="quote"></div>
+
+  <div class="glass toggle-row">
+    <div><b style="font-size:14px">Bảo vệ</b><div class="mute" style="font-size:12px" id="toggle-sub">Theo dõi tìm kiếm 18+</div></div>
+    <label class="switch"><input type="checkbox" id="enabled" /><span class="slider"></span></label>
+  </div>
+
+  <div class="row" id="pause-row">
+    <button class="btn btn-sm" data-pause="15">⏸ Tạm dừng 15 phút</button>
+    <button class="btn btn-sm" data-pause="60">⏸ 1 giờ</button>
+  </div>
+  <div class="row hidden" id="resume-row"><button class="btn btn-sm btn-primary" id="resume">▶ Bật lại ngay</button></div>
+
+  <div class="lock hidden" id="lock">
+    <p class="muted">Gõ câu cam kết để xác nhận:</p>
+    <div class="phrase" id="lock-phrase"></div>
+    <input class="input" id="lock-input" autocomplete="off" />
+    <div class="row" style="margin-top:8px">
+      <button class="btn btn-sm" id="lock-cancel">Hủy</button>
+      <button class="btn btn-sm btn-danger" id="lock-ok" disabled>Xác nhận</button>
+    </div>
+  </div>
+
+  <div class="row" style="margin-top:6px">
+    <button class="btn btn-sm btn-primary" id="open-options">⚙️ Cài đặt & tiến trình</button>
+    <button class="btn btn-sm" id="open-preview">👁 Xem trước</button>
+  </div>
+
+  <script type="module" src="popup.js"></script>
+</body>
+</html>

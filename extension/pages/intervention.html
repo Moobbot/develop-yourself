@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Khoan đã – Mindful Shield</title>
+  <meta name="description" content="Dừng lại một nhịp, suy ngẫm và chọn phát triển bản thân." />
+  <link rel="icon" href="/icons/icon32.png" />
+  <link rel="stylesheet" href="common.css" />
+  <link rel="stylesheet" href="intervention.css" />
+</head>
+<body>
+  <div class="bg" id="bg"></div>
+  <div class="bg-overlay"></div>
+  <div class="aurora a1"></div>
+  <div class="aurora a2"></div>
+  <div class="aurora a3"></div>
+
+  <header class="topbar">
+    <div class="brand">
+      <img src="/icons/icon48.png" alt="" />
+      <span>Mindful <b>Shield</b></span>
+    </div>
+    <div class="top-stats">
+      <span class="chip" id="chip-streak" title="Thời gian kể từ lần cuối bạn chọn tiếp tục">🔥 <b id="streak">0 phút</b> chuỗi</span>
+      <span class="chip" title="Số lần bạn đã chọn quay lại">🏆 <b id="wins">0</b> chiến thắng</span>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero fade-up">
+      <p class="eyebrow" id="eyebrow">Một khoảnh khắc dành cho bạn</p>
+      <h1>Khoan đã. <span class="grad-text">Hít một hơi thật sâu.</span></h1>
+      <p class="hero-sub" id="hero-sub"></p>
+    </section>
+
+    <section class="grid">
+      <div class="col">
+        <article class="glass card fade-up" style="animation-delay:.05s">
+          <div class="card-head">
+            <h2>💭 Câu hỏi dành cho bạn</h2>
+            <div class="q-nav">
+              <button class="icon-btn" id="q-prev" aria-label="Câu trước">‹</button>
+              <span id="q-index" class="mute">1/3</span>
+              <button class="icon-btn" id="q-next" aria-label="Câu sau">›</button>
+            </div>
+          </div>
+          <p class="question" id="question"></p>
+          <div class="dots" id="q-dots"></div>
+        </article>
+
+        <article class="glass card fade-up goals-card" style="animation-delay:.1s" id="goals-card">
+          <h2>🎯 Lý do bạn bắt đầu</h2>
+          <ul class="goals" id="goals"></ul>
+          <a class="mute small" href="options.html#goals" target="_blank" id="edit-goals">✎ Chỉnh sửa lý do của bạn</a>
+        </article>
+
+        <article class="glass card fade-up" style="animation-delay:.15s">
+          <h2>📝 Viết ra điều bạn đang cảm thấy</h2>
+          <p class="muted small">Gọi tên cảm xúc giúp nó yếu đi. Bạn đang buồn chán, cô đơn, căng thẳng hay mệt?</p>
+          <textarea class="input" id="journal" placeholder="Ngay lúc này mình đang cảm thấy… Mình muốn xem vì…"></textarea>
+          <div class="mood-row" id="moods">
+            <button class="mood" data-mood="Buồn chán">😐 Buồn chán</button>
+            <button class="mood" data-mood="Cô đơn">🥺 Cô đơn</button>
+            <button class="mood" data-mood="Căng thẳng">😣 Căng thẳng</button>
+            <button class="mood" data-mood="Mệt mỏi">😴 Mệt mỏi</button>
+            <button class="mood" data-mood="Tò mò">🤔 Tò mò</button>
+            <button class="mood" data-mood="Thói quen">🔁 Thói quen</button>
+          </div>
+        </article>
+
+        <article class="glass card fade-up" style="animation-delay:.2s">
+          <h2>⚡ Thay vào đó, hãy thử</h2>
+          <div class="actions" id="actions"></div>
+        </article>
+      </div>
+
+      <div class="col">
+        <article class="glass card quote-card fade-up" style="animation-delay:.08s">
+          <div class="quote-mark">“</div>
+          <blockquote id="quote"></blockquote>
+          <div class="quote-foot">
+            <cite id="quote-author"></cite>
+            <button class="btn btn-sm btn-ghost" id="quote-next">↻ Câu khác</button>
+          </div>
+        </article>
+
+        <article class="glass card media-card fade-up" style="animation-delay:.14s">
+          <div class="card-head">
+            <div class="tabs" role="tablist">
+              <button class="tab active" data-tab="video" id="tab-video" role="tab">🎬 Video</button>
+              <button class="tab" data-tab="image" id="tab-image" role="tab">🖼️ Hình ảnh</button>
+            </div>
+            <div class="q-nav">
+              <button class="icon-btn" id="media-prev" aria-label="Trước">‹</button>
+              <span id="media-index" class="mute">1/1</span>
+              <button class="icon-btn" id="media-next" aria-label="Sau">›</button>
+            </div>
+          </div>
+          <div class="media-stage" id="media-stage"></div>
+          <div class="media-caption">
+            <span id="media-caption"></span>
+            <a id="media-open" class="small" target="_blank" rel="noopener"></a>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="action-bar glass">
+    <div class="ab-left">
+      <button class="btn btn-primary btn-lg" id="btn-back">🌱 Tôi chọn phát triển bản thân</button>
+      <button class="btn btn-lg" id="btn-breathe">🫁 Hít thở 1 phút</button>
+    </div>
+    <div class="ab-right">
+      <span class="mute small hidden" id="strict-note">🔒 Chế độ nghiêm khắc đang bật</span>
+      <button class="btn btn-ghost btn-sm" id="btn-continue" disabled>Vẫn tiếp tục…</button>
+    </div>
+  </footer>
+
+  <!-- Breathing modal -->
+  <div class="modal hidden" id="breathe-modal" role="dialog" aria-modal="true">
+    <div class="modal-box breathe-box">
+      <div class="breath-circle" id="breath-circle"><span id="breath-label">Sẵn sàng</span></div>
+      <p class="breath-timer"><b id="breath-time">60</b> giây</p>
+      <p class="muted small">Hít vào 4 giây · Giữ 4 giây · Thở ra 6 giây</p>
+      <button class="btn" id="breathe-close">Xong</button>
+    </div>
+  </div>
+
+  <!-- Continue modal -->
+  <div class="modal hidden" id="continue-modal" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <h2>Bạn chắc chắn chứ?</h2>
+      <p class="muted">Không sao cả nếu hôm nay khó khăn. Nhưng hãy thành thật với bản thân: <b>vì sao</b> bạn vẫn muốn tiếp tục?</p>
+      <textarea class="input" id="continue-reason" placeholder="Mình vẫn muốn tiếp tục vì…"></textarea>
+      <p class="small mute" id="reason-hint"></p>
+      <div class="modal-actions">
+        <button class="btn btn-primary" id="continue-cancel">Thôi, mình quay lại</button>
+        <button class="btn btn-danger" id="continue-confirm" disabled>Tiếp tục</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Victory overlay -->
+  <div class="victory hidden" id="victory">
+    <canvas id="confetti"></canvas>
+    <div class="victory-box fade-up">
+      <div class="trophy">🏆</div>
+      <h2>Chiến thắng thứ <span class="grad-text" id="v-wins">1</span>!</h2>
+      <p class="muted" id="v-msg">Bạn vừa chọn con người mà bạn muốn trở thành. Hãy tự hào về điều đó.</p>
+      <div class="v-stats">
+        <div><b id="v-streak">0</b><span>chuỗi hiện tại</span></div>
+        <div><b id="v-rate">100%</b><span>tỉ lệ chiến thắng</span></div>
+      </div>
+      <p class="v-quote" id="v-quote"></p>
+      <div class="modal-actions center">
+        <button class="btn btn-primary" id="v-safe">Mở trang an toàn</button>
+        <button class="btn" id="v-close">Đóng tab</button>
+        <a class="btn btn-ghost" href="options.html#dashboard">Xem tiến trình</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+  <script type="module" src="intervention.js"></script>
+</body>
+</html>
